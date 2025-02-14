@@ -21,35 +21,47 @@ export default function LoveLetter() {
                 setDisplayedLines((prevLines) => [...prevLines, letterParts[index]]);
                 index++;
             }
-        }, 3000);
+        }, 500);
   
         return () => clearInterval(interval);
     }, []);
   
     return (
         <div style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            minHeight: "100vh", // Changed from height to minHeight
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
             background: "linear-gradient(to right, #ff758c, #ff7eb3)",
+            display: "flex",
+            justifyContent: "center", // Center horizontally
+            alignItems: "flex-start",  // Align content at the top
             color: "white",
             textAlign: "center",
-            padding: "12px",
-            flexDirection: "column",
-            overflowY: "auto" // Added overflow
+            paddingTop: "12px",
+            overflowY: "auto", // Allow scrolling if necessary
         }}>
-            {displayedLines.map((line, i) => (
-                <h2 key={i} style={{ fontSize: "1.5rem", maxWidth: "80%" }}>
-                    <Typewriter 
-                        words={[line]} 
-                        loop={1}
-                        typeSpeed={40} 
-                        cursor={i === displayedLines.length - 1}
-                        delaySpeed={1000}
-                    />
-                </h2>
-            ))}
+            <div style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center", // Center content horizontally
+                padding: "12px",
+                maxHeight: "100vh",  // Restrict the height to the viewport size
+                overflowY: "auto",   // Enable scrolling if content overflows
+            }}>
+                {displayedLines.map((line, i) => (
+                    <h2 key={i} style={{ fontSize: "1.5rem", maxWidth: "80%" }}>
+                        <Typewriter 
+                            words={[line]} 
+                            loop={1}
+                            typeSpeed={25} 
+                            cursor={i === displayedLines.length - 1}
+                            delaySpeed={1000}
+                        />
+                    </h2>
+                ))}
+            </div>
         </div>
     );
 }
