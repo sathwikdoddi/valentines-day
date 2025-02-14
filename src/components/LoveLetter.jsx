@@ -31,12 +31,13 @@ export default function LoveLetter() {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            height: "100vh",
+            minHeight: "100vh", // Changed from height to minHeight
             background: "linear-gradient(to right, #ff758c, #ff7eb3)",
             color: "white",
             textAlign: "center",
             padding: "12px",
-            flexDirection: "column"
+            flexDirection: "column",
+            overflowY: "auto" // Added overflow
         }}>
             {displayedLines.map((line, i) => (
                 <h2 key={i} style={{ fontSize: "1.5rem", maxWidth: "80%" }}>
